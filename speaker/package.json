@@ -1,0 +1,17 @@
+{
+  "name": "speaker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.10.0",
+    "johnny-five": "^0.10.6",
+    "redis": "^2.6.5",
+    "speaker": "^0.3.0"
+  }
+}

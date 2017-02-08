@@ -1,0 +1,18 @@
+<div class="login-page">
+    <div class="form">
+        <form class="login-form" action="/add" method="post">
+            <input type="text" name="text" placeholder="Quote" />
+            <select name="language">
+            {{#each languages }}
+                    <option value="{{this}}">{{this}}</option>
+            {{/each}}
+            </select>
+             <select name="gender">
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+            </select>
+            <button>Add quote</button>           
+        </form>
+    </div>
+</div>
