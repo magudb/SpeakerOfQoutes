@@ -7,20 +7,19 @@ const subscriber = redis.createClient({
     port: 32768
 });
 
-const Polly = new AWS.Polly({
-    signatureVersion: 'v4',
-    region: 'us-east-1'
-});
-
-// Create the Speaker instance
-let Player = new Speaker({
-    channels: 1,
-    bitDepth: 16,
-    sampleRate: 16000
-})
-
-
 let speak = (text, voiceId) => {
+    const Polly = new AWS.Polly({
+        signatureVersion: 'v4',
+        region: 'us-east-1'
+    });
+
+    // Create the Speaker instance
+    const Player = new Speaker({
+        channels: 1,
+        bitDepth: 16,
+        sampleRate: 16000
+    })
+
     let params = {
         'Text': text,
         'OutputFormat': 'pcm',
@@ -33,14 +32,15 @@ let speak = (text, voiceId) => {
         } else if (data) {
             if (data.AudioStream instanceof Buffer) {
                 // Initiate the source
-                var bufferStream = new Stream.PassThrough()
+                var bufferStream = new Stream.PassThrough();
                 // convert AudioStream into a readable stream
-                bufferStream.end(data.AudioStream)
+                bufferStream.end(data.AudioStream);
                 // Pipe into Player
-                bufferStream.pipe(Player)
+                bufferStream.pipe(Player);
+
                 return
             }
-            console.log("not saying stuff")
+            console.log(`I'm not saying "${params.Text}"!!!`)
 
         }
     });
@@ -48,7 +48,7 @@ let speak = (text, voiceId) => {
 
 subscriber.on("message", function (channel, data) {
     var message = JSON.parse(data);
-    console.log(`I will say ${message.text} with voice ${message.voiceId}`);
+    console.log(`I will say "${message.text}" with voice ${message.voiceId}`);
     speak(message.text, message.voiceId)
 });
 
