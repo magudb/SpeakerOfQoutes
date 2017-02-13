@@ -1,0 +1,12 @@
+[Unit]
+Description=Redis container
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker start -a laughing_yalow
+ExecStop=/usr/bin/docker stop -t 2 laughing_yalow
+
+[Install]
+WantedBy=default.target
