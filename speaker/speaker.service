@@ -5,6 +5,7 @@ Description=Speaker
 Restart=always
 User=root
 WorkingDirectory=/home/pi/SpeakerOfQoutes/speaker
+ExecStart=/usr/bin/node index.js
 
 [Install]
 WantedBy=multi-user.target
