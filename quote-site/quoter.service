@@ -3,7 +3,7 @@ Description=Quoter
 
 [Service]
 Restart=always
-User=pi
+User=root
 WorkingDirectory=/home/pi/SpeakerOfQoutes/quote-site
 ExecStart=/usr/bin/node ./bin/www
 
