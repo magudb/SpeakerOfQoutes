@@ -28,21 +28,24 @@ var board = new five.Board({
     io: new Raspi()
 });
 
-board.on('ready', function() {
-  button = new five.Button({
-   pin: 'GPIO4',
-   isPullup: true
-  });
+board.on('ready', function () {
+    button = new five.Button({
+        pin: 'GPIO4',
+        isPullup: true
+    });
 
-  board.repl.inject({
-    button: button
-  })
+    board.repl.inject({
+        button: button
+    })
 
-  // 'down' the button is pressed
-  button.on('down', ()=> {
-      getQuote()
-      .then(data => client.publish("quoter", data))
-      .catch(console.log)   
-  })
+    // 'down' the button is pressed
+    button.on('down', () => {
+        getQuote()
+            .then(data => { 
+                console.log(data);
+                client.publish("quoter", data); 
+            })
+            .catch(console.log)
+    })
 
 })
