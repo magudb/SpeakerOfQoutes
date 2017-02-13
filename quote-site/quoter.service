@@ -2,7 +2,7 @@
 Description=Quoter
 
 [Service]
-ExecStart=/home/pi/SpeakerOfQoutes/quote-site/index.js
+ExecStart=/usr/bin/node /home/pi/SpeakerOfQoutes/quote-site/index.js
 Restart=always
 User=root
 Group=root

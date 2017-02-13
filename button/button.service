@@ -2,7 +2,7 @@
 Description=Button
 
 [Service]
-ExecStart=/home/pi/SpeakerOfQoutes/button/index.js
+ExecStart=/usr/bin/node /home/pi/SpeakerOfQoutes/button/index.js
 Restart=always
 User=root
 Group=root

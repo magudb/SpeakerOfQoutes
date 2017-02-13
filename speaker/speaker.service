@@ -2,7 +2,7 @@
 Description=Speaker
 
 [Service]
-ExecStart=/home/pi/SpeakerOfQoutes/speaker/index.js
+ExecStart=/usr/bin/node /home/pi/SpeakerOfQoutes/speaker/index.js
 Restart=always
 User=root
 Group=root
