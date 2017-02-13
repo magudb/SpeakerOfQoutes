@@ -40,7 +40,7 @@ router.post("/add", (req, res, next) => {
   Polly.describeVoices(params, function (err, data) {
     if (err) {
       console.log(err, err.stack);
-      return res.redirect('/?DONE=sadness');
+      return res.redirect('/?DONE='+err);
     } // an error occurred
     else {
       var gender = req.body.gender;
@@ -48,12 +48,12 @@ router.post("/add", (req, res, next) => {
         var genders = ["Female", "Male"];
         gender = genders[Math.floor(Math.random() * genders.length)];
       }
-      console.log(gender);
+    
 
       var voiceId = data.Voices.filter(voice => {
         return voice.LanguageCode == req.body.language.toString() && voice.Gender == gender;
       })[0];
-      console.log(voiceId);
+     
       var model = {
         text: req.body.text,
         voiceId: voiceId
