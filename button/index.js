@@ -30,18 +30,19 @@ var board = new five.Board({
 });
 
 board.on('ready', function () {
-    console.log("board ready");
-    button = new five.Button({
+    console.log("board ready \r\n");
+    var button = new five.Button({
         pin: 'GPIO4',
         isPullup: true
     });
 
-    // board.repl.inject({
-    //     button: button
-    // })
+    board.repl.inject({
+        button: button
+    });
 
     // 'down' the button is pressed
     button.on('down', () => {
+        console.log("button clicked");
         getQuote()
             .then(data => { 
                 console.log(data);
