@@ -2,7 +2,7 @@
 Description=Quoter
 
 [Service]
-ExecStart=/usr/bin/node index.js
+ExecStart=node index.js
 Restart=always
 User=root
 Group=root
