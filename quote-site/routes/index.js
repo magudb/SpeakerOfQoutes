@@ -39,8 +39,9 @@ router.post("/add", (req, res, next) => {
   };
   Polly.describeVoices(params, function (err, data) {
     if (err) {
-      console.log(err, err.stack);
-      return res.redirect('/?DONE='+err);
+      throw err;
+      // console.log(err, err.stack);
+      // return res.redirect('/?DONE='+err);
     } // an error occurred
     else {
       var gender = req.body.gender;
@@ -48,7 +49,6 @@ router.post("/add", (req, res, next) => {
         var genders = ["Female", "Male"];
         gender = genders[Math.floor(Math.random() * genders.length)];
       }
-    
 
       var voiceId = data.Voices.filter(voice => {
         return voice.LanguageCode == req.body.language.toString() && voice.Gender == gender;
@@ -60,7 +60,7 @@ router.post("/add", (req, res, next) => {
       };
       var stringed = JSON.stringify(model);
       client.set(req.body.text.replace(/\W/g, ''), stringed, redis.print);
-      res.redirect('/?DONE=happiness');
+      res.redirect('/');
     }           // successful response
   });
 
