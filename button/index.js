@@ -8,7 +8,7 @@ const client = redis.createClient({
 });
 
 var getQuote = () => {
-    return new promise((resolved, rejected) => {
+    return new Promise((resolved, rejected) => {
         client.send_command('RANDOMKEY', [], (err, key) => {
             if (err) rejected(err);
             client.get(key, (err, data) => {
@@ -43,6 +43,7 @@ board.on('ready', function () {
     // 'down' the button is pressed
     button.on('down', () => {
         console.log("button clicked");
+       
         getQuote()
             .then(data => { 
                 console.log(data);
