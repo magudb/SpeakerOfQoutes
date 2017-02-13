@@ -4,7 +4,7 @@ const AWS = require('aws-sdk');
 const redis = require("redis");
 const subscriber = redis.createClient({
     host: "localhost",
-    port: 32768
+    port: 6379
 });
 
 let speak = (text, voiceId) => {

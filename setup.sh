@@ -29,7 +29,7 @@ systemctl enable speaker.service
 cd ..
 echo "Speaker"
 
-cp redis.service /etc/systemd/system
-systemctl daemon-reload
-systemctl start redis.service
-systemctl enable redis.service
+# cp redis.service /etc/systemd/system
+# systemctl daemon-reload
+# systemctl start redis.service
+# systemctl enable redis.service

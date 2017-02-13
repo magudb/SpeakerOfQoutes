@@ -5,7 +5,7 @@ Description=Quoter
 Restart=always
 User=pi
 WorkingDirectory=/home/pi/SpeakerOfQoutes/quote-site
-ExecStart=/usr/bin/node index.js
+ExecStart=/usr/bin/node ./bin/www
 
 [Install]
 WantedBy=multi-user.target

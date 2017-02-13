@@ -4,7 +4,7 @@ const Raspi = require('raspi-io');
 
 const client = redis.createClient({
     host: "localhost",
-    port: 32768
+    port: 6379
 });
 
 var getQuote = () => {
