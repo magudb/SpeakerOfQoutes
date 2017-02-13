@@ -6,6 +6,7 @@ const client = redis.createClient({
     host: "localhost",
     port: 32768
 });
+
 var getQuote = () => {
     return new promise((resolved, rejected) => {
         client.send_command('RANDOMKEY', [], (err, key) => {
@@ -29,14 +30,15 @@ var board = new five.Board({
 });
 
 board.on('ready', function () {
+    console.log("board ready");
     button = new five.Button({
         pin: 'GPIO4',
         isPullup: true
     });
 
-    board.repl.inject({
-        button: button
-    })
+    // board.repl.inject({
+    //     button: button
+    // })
 
     // 'down' the button is pressed
     button.on('down', () => {
