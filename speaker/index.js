@@ -6,6 +6,7 @@ const subscriber = redis.createClient({
     host: "localhost",
     port: 6379
 });
+const async = require("async");
 
 
 let speak = (text, voiceId) => {
