@@ -27,40 +27,49 @@ let speak = (text, voiceId) => {
         'OutputFormat': 'pcm',
         'VoiceId': voiceId
     }
-
-    Polly.synthesizeSpeech(params, (err, data) => {
-        if (err) {
-            console.log(err)
-        } else if (data) {
-            if (data.AudioStream instanceof Buffer) {
-                // Initiate the source
-                var bufferStream = new Stream.PassThrough();
-                // convert AudioStream into a readable stream
-                bufferStream.end(data.AudioStream);
-                // Pipe into Player
-                bufferStream.pipe(Player);
-
-                return
+    return new Promise((resolved, rejected) => {
+        Polly.synthesizeSpeech(params, (err, data) => {
+            if (err) {
+                console.log(err)
+                return rejected(err);
+            } else if (data) {
+                if (data.AudioStream instanceof Buffer) {
+                    // Initiate the source
+                    var bufferStream = new Stream.PassThrough();
+                    // convert AudioStream into a readable stream
+                    bufferStream.end(data.AudioStream);
+                    // Pipe into Player
+                    bufferStream.pipe(Player);
+                    return resolved(`I said it! - "${params.Text}`);
+                }
+                return rejected(`I'm not saying "${params.Text}"!!!`);
             }
-            console.log(`I'm not saying "${params.Text}"!!!`)
+        });
+    })
 
-        }
-    });
 };
 
 var q = async.queue(function (message, callback) {
-      speak(message.text, message.voiceId)
-    callback();
+    speak(message.text, message.voiceId)
+        .then((res) => {
+            console.log(res);
+            callback();
+        })
+        .catch((res) => {
+            console.log(res);
+            callback(res);
+        });
+
 }, 1);
 
 subscriber.on("message", function (channel, data) {
     var message = JSON.parse(data);
     console.log(`I will say "${message.text}" with voice ${message.voiceId}`);
     q.push(message, function (err) {
-        if(err) console.log(err);
+        if (err) console.log(err);
         console.log('finished processing bar');
     });
-  
+
 });
 
 subscriber.subscribe("quoter");
