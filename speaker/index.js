@@ -7,6 +7,7 @@ const subscriber = redis.createClient({
     port: 6379
 });
 
+
 let speak = (text, voiceId) => {
     const Polly = new AWS.Polly({
         signatureVersion: 'v4',
@@ -46,10 +47,19 @@ let speak = (text, voiceId) => {
     });
 };
 
+var q = async.queue(function (message, callback) {
+      speak(message.text, message.voiceId)
+    callback();
+}, 1);
+
 subscriber.on("message", function (channel, data) {
     var message = JSON.parse(data);
     console.log(`I will say "${message.text}" with voice ${message.voiceId}`);
-    speak(message.text, message.voiceId)
+    q.push(message, function (err) {
+        if(err) console.log(err);
+        console.log('finished processing bar');
+    });
+  
 });
 
 subscriber.subscribe("quoter");
