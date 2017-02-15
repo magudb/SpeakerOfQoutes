@@ -18,6 +18,7 @@ var getQuote = () => {
                     rejected("No data");
                     return;
                 }
+                console.log(model)
                 if(!model || !model.voiceId)
                 var message = {
                     text: model.text,
