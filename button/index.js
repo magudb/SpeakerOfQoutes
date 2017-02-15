@@ -14,6 +14,11 @@ var getQuote = () => {
             client.get(key, (err, data) => {
                 if (err) rejected(err);
                 var model = JSON.parse(data)
+                {
+                    rejected("No data");
+                    return;
+                }
+                if(!model || !model.voiceId)
                 var message = {
                     text: model.text,
                     voiceId: model.voiceId.Id

@@ -64,10 +64,10 @@ var q = async.queue(function (message, callback) {
 
 subscriber.on("message", function (channel, data) {
     var message = JSON.parse(data);
-    console.log(`I will say "${message.text}" with voice ${message.voiceId}`);
+    
     q.push(message, function (err) {
         if (err) console.log(err);
-        console.log('finished processing bar');
+       return
     });
 
 });
