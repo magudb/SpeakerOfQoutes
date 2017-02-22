@@ -19,11 +19,12 @@ var getQuote = () => {
                     return rejected("No data");
                 }
                 var message = {
+                    key: data.key,
                     text: model.text,
                     voiceId: model.voiceId.Id
                 }
                 var enveloped = JSON.stringify(message)
-                resolved(enveloped);
+                return resolved(enveloped);
             });
         });
     })
