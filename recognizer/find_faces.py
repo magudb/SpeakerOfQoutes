@@ -17,7 +17,7 @@ def saveFrame(frame):
     return savePath 
  
 cascPath = "./lbpcascade_frontalface.xml"
-showVideo = True
+showVideo = False
 if len(sys.argv) > 1:
     cascPath = sys.argv[1]
     showVideo = True
