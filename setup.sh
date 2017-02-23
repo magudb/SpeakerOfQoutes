@@ -40,7 +40,7 @@ cd ..
 echo "Facer stop"
 
 echo "recoger Start"
-cd facer
+cd recognizer
 #npm install
 cp recognizer.service /etc/systemd/system
 systemctl daemon-reload
