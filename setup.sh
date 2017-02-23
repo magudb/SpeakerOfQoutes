@@ -28,16 +28,26 @@ systemctl start speaker.service
 systemctl enable speaker.service
 cd ..
 echo "Speaker"
-##!/usr/bin/python -p
+
 echo "Facer Start"
 cd facer
 #npm install
 cp facer.service /etc/systemd/system
 systemctl daemon-reload
 systemctl start facer.service
-systemctl enable racer.service
+systemctl enable sacer.service
 cd ..
 echo "Facer stop"
+
+echo "recoger Start"
+cd facer
+#npm install
+cp recognizer.service /etc/systemd/system
+systemctl daemon-reload
+systemctl start recognizer.service
+systemctl enable recognizer.service
+cd ..
+echo "Recoger stop"
 
 # cp redis.service /etc/systemd/system
 # systemctl daemon-reload
