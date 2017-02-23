@@ -1,0 +1,12 @@
+[Unit]
+Description=Facer
+After=network.target
+
+[Service]
+Restart=always
+User=root
+WorkingDirectory=/home/pi/SpeakerOfQoutes/facer
+ExecStart=/usr/local/bin/node index.js
+
+[Install]
+WantedBy=multi-user.target

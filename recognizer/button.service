@@ -1,0 +1,12 @@
+[Unit]
+Description=Recognizer
+After=network.target
+
+[Service]
+Restart=always
+User=root
+WorkingDirectory=/home/pi/SpeakerOfQoutes/recognizer
+ExecStart=start.sh
+
+[Install]
+WantedBy=multi-user.target
