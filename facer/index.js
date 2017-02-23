@@ -6,7 +6,8 @@ const client = redis.createClient({
     port: 6379
 });
 
-subscriber.on("message", function (channel, data) {
+
+client.on("message", function (channel, data) {
     var message = {
         text: "I see you",
         voiceId: "Kimberly"
@@ -16,6 +17,6 @@ subscriber.on("message", function (channel, data) {
     client.publish("quoter", enveloped);
 });
 
-subscriber.subscribe("facer");
+client.subscribe("facer");
 
 
