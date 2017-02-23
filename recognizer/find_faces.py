@@ -32,7 +32,7 @@ while True:
     facesInFrame = len(faces)    
     if facesInFrame > 1:   
        print 'Faces in frame {0}'.format(facesInFrame)  
-       r.publish('facer', '{"face":"true"}')
+       redisClient.publish('facer', '{"face":"true"}')
        cv2.waitKey(5)       
        time.sleep(5)
 
