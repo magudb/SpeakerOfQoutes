@@ -36,9 +36,9 @@ var board = new five.Board({
 
 board.on('ready', function () {
     console.log("board ready \r\n");
-    var led = new five.Led("P1-13");
+    var led = new five.Led("4");
     var button = new five.Button({
-        pin: 'GPIO4',
+        pin: 'GPIO14',
         isPullup: true
     });
 
@@ -52,7 +52,7 @@ board.on('ready', function () {
         led.blink();
         getQuote()
             .then(data => {
-                console.log(data);
+               
                 client.publish("quoter", data);
                 led.stop()
             })
