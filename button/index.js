@@ -37,22 +37,23 @@ var board = new five.Board({
 board.on('ready', function () {
     console.log("board ready \r\n");
     var led = new five.Led("P1-13");
+    
     var button = new five.Button({
         pin: 'GPIO4',
         isPullup: true
     });
 
-    board.repl.inject({
-        button: button      
-    });
+    // board.repl.inject({
+    //     button: button,    
+    //     led:led  
+    // });
 
     // 'down' the button is pressed
     button.on('down', () => {
-        console.log("button clicked");
+        console.log("button down");
         led.on();
         getQuote()
             .then(data => {
-
                 client.publish("quoter", data);
 
             })
@@ -63,6 +64,7 @@ board.on('ready', function () {
     })
 
     button.on("up", function () {
+        console.log("button up");
         led.off();
     });
 
