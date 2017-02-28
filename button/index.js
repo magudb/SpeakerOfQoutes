@@ -47,19 +47,20 @@ board.on('ready', function () {
     //     button: button,    
     //     led:led  
     // });
-
+    led.off();
     // 'down' the button is pressed
     button.on('down', () => {
-        console.log("button up");
+        console.log("button don");
         led.off();
     })
 
     button.on("up", function () {
 
-        console.log("button down");
+        console.log("button up");
         led.on();
         getQuote()
             .then(data => {
+                console.log(data);
                 client.publish("quoter", data);
             })
             .catch(err => {
