@@ -14,8 +14,8 @@ var getQuote = () => {
             client.get(key, (err, data) => {
                 if (err) rejected(err);
                 var model = JSON.parse(data)
-                
-                if(!model || !model.voiceId){
+
+                if (!model || !model.voiceId) {
                     return rejected("No data");
                 }
                 var message = {
@@ -36,6 +36,7 @@ var board = new five.Board({
 
 board.on('ready', function () {
     console.log("board ready \r\n");
+    var led = new five.Led("P1-13");
     var button = new five.Button({
         pin: 'GPIO4',
         isPullup: true
@@ -48,13 +49,17 @@ board.on('ready', function () {
     // 'down' the button is pressed
     button.on('down', () => {
         console.log("button clicked");
-       
+        led.blink();
         getQuote()
-            .then(data => { 
+            .then(data => {
                 console.log(data);
-                client.publish("quoter", data); 
+                client.publish("quoter", data);
+                led.stop()
             })
-            .catch(console.log)
+            .catch(err=>{
+                led.stop()
+                console.log(err);
+            })
     })
 
 })
