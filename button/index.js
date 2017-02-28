@@ -43,30 +43,25 @@ board.on('ready', function () {
         isPullup: true
     });
 
-    // board.repl.inject({
-    //     button: button,    
-    //     led:led  
-    // });
     led.off();
     // 'down' the button is pressed
     button.on('down', () => {
-        console.log("button don");
+        console.log("button down");
         led.off();
     })
 
     button.on("up", function () {
-
-        console.log("button up");
-        led.on();
         getQuote()
             .then(data => {
                 console.log(data);
+                led.on();
+                console.log("button up");
                 client.publish("quoter", data);
             })
             .catch(err => {
 
                 console.log(err);
-            })
+            });
 
     });
 
