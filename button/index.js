@@ -36,9 +36,9 @@ var board = new five.Board({
 
 board.on('ready', function () {
     console.log("board ready \r\n");
-    var led = new five.Led("4");
+    var led = new five.Led("P1-13");
     var button = new five.Button({
-        pin: '14',
+        pin: 'GPIO4',
         isPullup: true
     });
 
