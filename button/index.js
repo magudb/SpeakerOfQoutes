@@ -43,7 +43,8 @@ board.on('ready', function () {
     });
 
     board.repl.inject({
-        button: button
+        button: button,
+        led: led
     });
 
     // 'down' the button is pressed
