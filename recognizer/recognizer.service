@@ -6,7 +6,7 @@ After=network.target
 Restart=always
 User=root
 WorkingDirectory=/home/pi/SpeakerOfQoutes/recognizer
-ExecStart=start.sh
+ExecStart=/usr/bin/python2.7 find_faces.py
 
 [Install]
 WantedBy=multi-user.target

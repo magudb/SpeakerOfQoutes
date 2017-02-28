@@ -35,7 +35,7 @@ cd facer
 cp facer.service /etc/systemd/system
 systemctl daemon-reload
 systemctl start facer.service
-systemctl enable sacer.service
+systemctl enable facer.service
 cd ..
 echo "Facer stop"
 

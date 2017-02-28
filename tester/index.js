@@ -1,16 +1,15 @@
-var redis = require("redis");
-var outlook = require('node-outlook');
+const five = require('johnny-five');
+const Raspi = require('raspi-io');
 
-const client = redis.createClient({
-    host: "localhost",
-    port: 6379
+var board = new five.Board({
+    io: new Raspi()
 });
-var message = {
-    text: "You have 4 new e-mails",
-    voiceId: "Kimberly"
-}
-var enveloped = JSON.stringify(message)
 
-client.publish("quoter", enveloped);
+board.on('ready', function () {
+    console.log("board ready \r\n");
+    var led = new five.Led("P1-13");
+  led.blink();
+
+})
 
 

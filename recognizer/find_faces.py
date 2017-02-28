@@ -4,10 +4,6 @@ import os
 import sys
 import uuid
 import redis
-from poster.encode import multipart_encode
-from poster.streaminghttp import register_openers
-from poster.encode import MultipartParam
-import urllib2
 
 cascPath = "./lbpcascade_frontalface.xml"
 redisClient = redis.StrictRedis(host='localhost', port=6379, db=0)    
